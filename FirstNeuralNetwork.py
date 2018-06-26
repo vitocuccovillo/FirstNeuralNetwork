@@ -100,6 +100,8 @@ dates = pd.to_datetime(rides.loc[test_data.index]['dteday'])
 dates = dates.apply(lambda d: d.strftime('%b %d'))
 ax.set_xticks(np.arange(len(dates))[12::24])
 _ = ax.set_xticklabels(dates[12::24], rotation=45)
+print("\n")
+print("MSE:")
 print(MSE(network.run(test_features), test_targets['cnt'].values))
 plt.show()
 
