@@ -55,8 +55,8 @@ def MSE(y, Y):
 
 ### Set the hyperparameters here ###
 epochs = 100
-learning_rate = 0.1
-hidden_nodes = 2
+learning_rate = 0.01
+hidden_nodes = 32
 output_nodes = 1
 
 N_i = train_features.shape[1]
@@ -83,9 +83,10 @@ for e in range(epochs):
 plt.plot(losses['train'], label='Training loss')
 plt.plot(losses['validation'], label='Validation loss')
 plt.legend()
-plt.ylim(ymax=0.5)
+#plt.ylim(ymax=0.5)
 plt.show()
 
+#dati e predizioni
 fig, ax = plt.subplots(figsize=(8,4))
 
 mean, std = scaled_features['cnt']
@@ -99,5 +100,4 @@ dates = pd.to_datetime(rides.ix[test_data.index]['dteday'])
 dates = dates.apply(lambda d: d.strftime('%b %d'))
 ax.set_xticks(np.arange(len(dates))[12::24])
 _ = ax.set_xticklabels(dates[12::24], rotation=45)
-
 plt.show()
