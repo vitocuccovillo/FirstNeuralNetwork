@@ -54,7 +54,7 @@ def MSE(y, Y):
 
 
 ### Set the hyperparameters here ###
-epochs = 100
+epochs = 500
 learning_rate = 0.01
 hidden_nodes = 25
 output_nodes = 1
@@ -66,8 +66,8 @@ losses = {'train': [], 'validation': []}
 for e in range(epochs):
     # Go through a random batch of 128 records from the training data set
     batch = np.random.choice(train_features.index, size=128)
-    for record, target in zip(train_features.ix[batch].values,
-                              train_targets.ix[batch]['cnt']):
+    for record, target in zip(train_features.loc[batch].values,
+                              train_targets.loc[batch]['cnt']):
         network.train(record, target)
 
     # Printing out the training progress
@@ -96,7 +96,7 @@ ax.plot((test_targets['cnt']*std + mean).values, label='Data')
 ax.set_xlim(right=len(predictions))
 ax.legend()
 
-dates = pd.to_datetime(rides.ix[test_data.index]['dteday'])
+dates = pd.to_datetime(rides.loc[test_data.index]['dteday'])
 dates = dates.apply(lambda d: d.strftime('%b %d'))
 ax.set_xticks(np.arange(len(dates))[12::24])
 _ = ax.set_xticklabels(dates[12::24], rotation=45)
