@@ -56,7 +56,7 @@ def MSE(y, Y):
 ### Set the hyperparameters here ###
 epochs = 100
 learning_rate = 0.01
-hidden_nodes = 32
+hidden_nodes = 25
 output_nodes = 1
 
 N_i = train_features.shape[1]
@@ -100,4 +100,6 @@ dates = pd.to_datetime(rides.ix[test_data.index]['dteday'])
 dates = dates.apply(lambda d: d.strftime('%b %d'))
 ax.set_xticks(np.arange(len(dates))[12::24])
 _ = ax.set_xticklabels(dates[12::24], rotation=45)
+print(MSE(network.run(test_features), test_targets['cnt'].values))
 plt.show()
+
