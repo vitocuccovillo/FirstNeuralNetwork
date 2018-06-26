@@ -84,6 +84,7 @@ plt.plot(losses['train'], label='Training loss')
 plt.plot(losses['validation'], label='Validation loss')
 plt.legend()
 plt.ylim(ymax=0.5)
+plt.show()
 
 fig, ax = plt.subplots(figsize=(8,4))
 
